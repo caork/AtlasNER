@@ -1,0 +1,4 @@
+output_dir: outputs/pilot/single_pass
+
+definitions:
+  cache_path: cache/definitions/pilot_single_pass.pt

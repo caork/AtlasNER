@@ -1,0 +1,9 @@
+output_dir: outputs/no_definitions
+
+model:
+  use_jpt: true
+  use_definitions: false
+  classifier_type: bilinear
+
+definitions:
+  use_label_name_only: true

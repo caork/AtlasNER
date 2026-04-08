@@ -1,0 +1,9 @@
+output_dir: outputs/full_jpt
+
+model:
+  use_jpt: true
+  use_definitions: true
+  classifier_type: bilinear
+
+definitions:
+  use_label_name_only: false

@@ -1,0 +1,36 @@
+output_dir: outputs/optimized/full_jpt
+
+model:
+  torch_dtype: bfloat16
+  max_length: 256
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  gradient_checkpointing: true
+  use_crf: true
+  num_aggregate_layers: 4
+
+data:
+  max_examples: null
+
+training:
+  epochs: 1
+  batch_size: 1
+  eval_batch_size: 2
+  grad_accum_steps: 8
+  learning_rate: 2.0e-5
+  head_learning_rate: 5.0e-4
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  log_every_steps: 50
+  eval_every_steps: 1000
+  save_every_steps: 1000
+  num_workers: 0
+  class_weighting: balanced
+  amp: false
+  label_smoothing: 0.0
+
+definitions:
+  cache_path: cache/definitions/conll2003_qwen3.5-2b_optimized.pt

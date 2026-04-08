@@ -1,0 +1,4 @@
+output_dir: outputs/pilot/no_definitions
+
+definitions:
+  cache_path: cache/definitions/pilot_no_definitions.pt

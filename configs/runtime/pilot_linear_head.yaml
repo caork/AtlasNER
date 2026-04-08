@@ -1,0 +1,4 @@
+output_dir: outputs/pilot/linear_head
+
+definitions:
+  cache_path: cache/definitions/pilot_linear_head.pt

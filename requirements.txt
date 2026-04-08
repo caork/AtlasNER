@@ -1,0 +1,7 @@
+torch>=2.5
+transformers>=4.57.0
+datasets>=2.19.0
+pyyaml>=6.0
+scikit-learn>=1.4.0
+tqdm>=4.66.0
+safetensors>=0.4.0

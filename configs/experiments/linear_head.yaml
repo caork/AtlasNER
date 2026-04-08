@@ -1,0 +1,9 @@
+output_dir: outputs/linear_head
+
+model:
+  use_jpt: true
+  use_definitions: true
+  classifier_type: linear
+
+definitions:
+  use_label_name_only: false
