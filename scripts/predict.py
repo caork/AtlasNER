@@ -23,21 +23,29 @@ from atlas_ner.modeling.jpt import load_model_from_checkpoint, load_tokenizer
 from atlas_ner.trainer import get_device
 
 
-_CJK_RANGES = (
-    r"\u2E80-\u9FFF"
-    r"\uF900-\uFAFF"
-    r"\U00020000-\U0002FA1F"
-)
-_CJK_PAT = re.compile(
-    rf"[{_CJK_RANGES}]"
-    r"|[a-zA-Z0-9]+(?:'[a-z]+)?"
-    r"|[^\w\s]",
-    flags=re.UNICODE,
-)
+import jieba
+
+_HAS_CJK = re.compile(r"[\u2E80-\u9FFF\uF900-\uFAFF]")
+_LATIN_PUNCT = re.compile(r"[a-zA-Z0-9]+(?:'[a-z]+)?|[^\w\s]", flags=re.UNICODE)
 
 
 def simple_word_tokenize(text: str) -> list[str]:
-    return _CJK_PAT.findall(text)
+    """Tokenize text: jieba for Chinese segments, regex for Latin/punct."""
+    if not _HAS_CJK.search(text):
+        return _LATIN_PUNCT.findall(text)
+    tokens: list[str] = []
+    segments = re.split(r"([\u2E80-\u9FFF\uF900-\uFAFF]+)", text)
+    for seg in segments:
+        if not seg or seg.isspace():
+            continue
+        if _HAS_CJK.search(seg):
+            for word in jieba.cut(seg):
+                word = word.strip()
+                if word:
+                    tokens.append(word)
+        else:
+            tokens.extend(_LATIN_PUNCT.findall(seg))
+    return tokens
 
 
 def parse_args() -> argparse.Namespace:

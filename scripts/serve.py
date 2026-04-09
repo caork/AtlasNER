@@ -94,21 +94,35 @@ class NERResponse(BaseModel):
 app = FastAPI(title="AtlasNER", version="1.0.0", description="Named Entity Recognition API")
 
 
-_CJK_RANGES = (
-    r"\u2E80-\u9FFF"    # CJK Unified + Radicals + Kangxi + misc
-    r"\uF900-\uFAFF"    # CJK Compatibility Ideographs
-    r"\U00020000-\U0002FA1F"  # CJK Extension B-F + Supplements
-)
-_CJK_PAT = re.compile(
-    rf"[{_CJK_RANGES}]"            # each CJK char is its own token
-    r"|[a-zA-Z0-9]+(?:'[a-z]+)?"   # Latin words (don't, it's)
-    r"|[^\w\s]",                    # punctuation
-    flags=re.UNICODE,
-)
+import jieba
+
+_HAS_CJK = re.compile(r"[\u2E80-\u9FFF\uF900-\uFAFF]")
+_LATIN_PUNCT = re.compile(r"[a-zA-Z0-9]+(?:'[a-z]+)?|[^\w\s]", flags=re.UNICODE)
 
 
 def simple_word_tokenize(text: str) -> list[str]:
-    return _CJK_PAT.findall(text)
+    """Tokenize text: jieba for Chinese segments, regex for Latin/punct."""
+    if not _HAS_CJK.search(text):
+        # Pure non-CJK: fast path
+        return _LATIN_PUNCT.findall(text)
+
+    # Mixed: split into CJK vs non-CJK runs, handle each appropriately
+    tokens: list[str] = []
+    # Split text into alternating CJK / non-CJK segments
+    segments = re.split(r"([\u2E80-\u9FFF\uF900-\uFAFF]+)", text)
+    for seg in segments:
+        if not seg or seg.isspace():
+            continue
+        if _HAS_CJK.search(seg):
+            # Chinese segment -> jieba word segmentation
+            for word in jieba.cut(seg):
+                word = word.strip()
+                if word:
+                    tokens.append(word)
+        else:
+            # Latin / punctuation / digits
+            tokens.extend(_LATIN_PUNCT.findall(seg))
+    return tokens
 
 
 @app.post("/ner", response_model=NERResponse)
