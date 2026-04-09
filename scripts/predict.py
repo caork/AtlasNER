@@ -23,8 +23,21 @@ from atlas_ner.modeling.jpt import load_model_from_checkpoint, load_tokenizer
 from atlas_ner.trainer import get_device
 
 
+_CJK_RANGES = (
+    r"\u2E80-\u9FFF"
+    r"\uF900-\uFAFF"
+    r"\U00020000-\U0002FA1F"
+)
+_CJK_PAT = re.compile(
+    rf"[{_CJK_RANGES}]"
+    r"|[a-zA-Z0-9]+(?:'[a-z]+)?"
+    r"|[^\w\s]",
+    flags=re.UNICODE,
+)
+
+
 def simple_word_tokenize(text: str) -> list[str]:
-    return re.findall(r"\w+|[^\w\s]", text, flags=re.UNICODE)
+    return _CJK_PAT.findall(text)
 
 
 def parse_args() -> argparse.Namespace:
