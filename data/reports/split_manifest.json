@@ -1,0 +1,42 @@
+{
+  "total_single_samples": 1852,
+  "total_multi_samples": 739,
+  "splits": {
+    "train": 1480,
+    "dev": 186,
+    "test": 186
+  },
+  "field_presence": {
+    "equipment": 790,
+    "process": 798,
+    "risk": 1852,
+    "prevention": 1794,
+    "control": 740,
+    "risk_level": 536
+  },
+  "field_count_distribution": {
+    "1": 58,
+    "2": 988,
+    "3": 17,
+    "4": 49,
+    "5": 211,
+    "6": 529
+  },
+  "pdf_matched": 1550,
+  "fallback_used": 302,
+  "train_distribution": {
+    "high": "590/1480 (39.9%)",
+    "low": "838/1480 (56.6%)",
+    "mid": "52/1480 (3.5%)"
+  },
+  "dev_distribution": {
+    "high": "75/186 (40.3%)",
+    "low": "104/186 (55.9%)",
+    "mid": "7/186 (3.8%)"
+  },
+  "test_distribution": {
+    "high": "75/186 (40.3%)",
+    "low": "104/186 (55.9%)",
+    "mid": "7/186 (3.8%)"
+  }
+}

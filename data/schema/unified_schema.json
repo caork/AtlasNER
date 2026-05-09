@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "task": "structured_extraction",
+  "domain": "power_grid_risk_management",
+  "fields": {
+    "equipment": {
+      "description": "电力设备、装置或部件名称",
+      "type": "string",
+      "required": false,
+      "source_columns": ["设备", "设备类型", "操作对象"],
+      "examples": ["变压器", "断路器", "隔离开关", "GIS组合电器", "直流控制保护系统", "架空输电线路", "杆塔"]
+    },
+    "process": {
+      "description": "工序、操作、检修或施工流程",
+      "type": "string",
+      "required": false,
+      "source_columns": ["工序", "操作行为", "工作内容"],
+      "examples": ["变压器整装转运", "回路绝缘检查", "倒闸操作", "基础开挖", "35kV铁塔组立及拆除"]
+    },
+    "risk": {
+      "description": "风险描述，包括风险类型和/或可能导致的后果",
+      "type": "string",
+      "required": false,
+      "source_columns": ["主要风险点", "基本风险点", "存在的主要风险", "风险类型", "作业风险类型", "风险可能导致的后果"],
+      "examples": ["机械伤害、物体打击", "触电", "高处坠落、火灾", "主变冲撞损坏、套管断裂"]
+    },
+    "risk_level": {
+      "description": "风险等级标识",
+      "type": "string",
+      "required": false,
+      "source_columns": ["风险等级", "工序风险库等级"],
+      "examples": ["高", "中", "低", "重大风险", "较大风险"]
+    },
+    "prevention": {
+      "description": "风险防范措施，保留原文编号列表格式",
+      "type": "string",
+      "required": false,
+      "source_columns": ["风险防范措施", "预控措施", "对应防范措施"],
+      "examples": ["1.施工前确认顶升及顶推位置地面承受力。\n2.主变本体升降时..."]
+    },
+    "control": {
+      "description": "工艺管控措施或质量管控措施",
+      "type": "string",
+      "required": false,
+      "source_columns": ["工艺管控措施", "质量管控措施"],
+      "examples": ["1.移动轨迹路面上铺设钢板...\n2.整装搬运前安装冲撞记录仪..."]
+    }
+  },
+  "column_mapping": {
+    "设备": "equipment",
+    "设备类型": "equipment",
+    "操作对象": "equipment",
+    "工序": "process",
+    "操作行为": "process",
+    "工作内容": "process",
+    "主要风险点": "risk",
+    "基本风险点": "risk",
+    "存在的主要风险": "risk",
+    "风险类型": "risk",
+    "作业风险类型": "risk",
+    "风险可能导致的后果": "risk",
+    "风险等级": "risk_level",
+    "工序风险库等级": "risk_level",
+    "风险防范措施": "prevention",
+    "预控措施": "prevention",
+    "对应防范措施": "prevention",
+    "工艺管控措施": "control",
+    "质量管控措施": "control"
+  },
+  "ignored_columns": ["序号", "违章库目录", "措施类型"]
+}
