@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001071",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 543,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "作业方案范例（变电检修专业）.docx",
+        "page_num": 7,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "1 GM104气室B相母线更换 GM104气室B相局放异常部位盆子及相关母线更换及气务处理 6月23日-6月30日 程慧敏 任少飞 陈旭东 程慧敏\n2 GM113气室C相母线更换 GM113气室C相局放异常部位盆子及相关母线更换及气务处理 程慧敏 任少飞 陈旭东 程慧敏\n3 一次设备拆装 配合耐压开展湖泉Ⅱ线避雷器BC相本体及一次引线拆除及复装，以及",
+    "think_chain": "该段落来源于风险库变电专业.xlsx的Sheet3第543行对应的PDF原文第7页。PDF原文是一份施工计划表，列出了多项工作，包括GM104气室B相母线更换、GM113气室C相母线更换和一次设备拆装。Excel预提取字段针对的是“高空坠落”风险和相应预防措施，但PDF原文中并未明确提及该风险或措施。考虑到母线更换和一次设备拆装涉及高处作业，可能隐含高空坠落风险，但属于间接推断。字段方面，可以直接提取工作内容、负责人、日期等信息，但风险与措施字段无法直接从原文中提取，因此保持Excel提供的字段。原文无明显的OCR错误（如“固棒”等），格式已清理，保留序号、工作内容、人员、日期等结构。",
+    "output_json": {
+      "risk": "高空坠落",
+      "prevention": "高处作业应正确使用安全带，作业人员在转移作业位置时不准失去安全保护。"
+    },
+    "annotator_notes": "PDF原文无直接风险描述，根据工作内容推断适用此风险与措施，保持Excel字段"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

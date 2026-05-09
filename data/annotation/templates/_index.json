@@ -1,5 +1,5 @@
 {
-  "total": 5,
+  "total": 45,
   "templates": [
     {
       "id": "sgcc_000144",
@@ -39,6 +39,326 @@
       "equipment": "",
       "process": "",
       "field_count": 2,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000020",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "搬运与开箱",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000021",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "就位、组部件更换、筒体对接、密封面处理",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000022",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "就位、组部件更换、筒体对接、密封面处理",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000023",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "就位、组部件更换、筒体对接、密封面处理",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000024",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "就位、组部件更换、筒体对接、密封面处理",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000025",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "就位、组部件更换、筒体对接、密封面处理",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000026",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "SF6气体回收、抽真空及充气",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000027",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "SF6气体回收、抽真空及充气",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000028",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "SF6气体回收、抽真空及充气",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000029",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "密封性检查、微水检测",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000030",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "密封性检查、微水检测",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000031",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "汇控柜、机构箱二次接线",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000032",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "汇控柜、机构箱二次接线",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000033",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "汇控柜、机构箱二次接线",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000034",
+      "status": "completed",
+      "equipment": "断路器",
+      "process": "机构与本体连接调试",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000035",
+      "status": "completed",
+      "equipment": "断路器",
+      "process": "机构与本体连接调试",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000036",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "套管检修及引线拆装",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000037",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "套管检修及引线拆装",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000038",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "就位、组部件更换、筒体对接、密封面处理",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_000039",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "电缆终端拆装",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001030",
+      "status": "completed",
+      "equipment": "变压器",
+      "process": "本体端子箱、冷却器控制箱检修（包括二次回路）",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001031",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "充气阀、气体管路更换，密度继电器更换、校验",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001033",
+      "status": "completed",
+      "equipment": "电流互感器",
+      "process": "密度继电器检修（SF6型）",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001034",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "SF6气体试验",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001035",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "SF6气体试验",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001036",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "清扫、防腐、防污闪",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001037",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "清扫、防腐、防污闪",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001038",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "例行试验",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001039",
+      "status": "completed",
+      "equipment": "变电站一次电气设备",
+      "process": "一次电气设备交接试验",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001040",
+      "status": "completed",
+      "equipment": "变电站一次电气设备",
+      "process": "一次电气设备交接试验",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001041",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "带电清扫",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001042",
+      "status": "completed",
+      "equipment": "组合电器",
+      "process": "带电清扫",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001043",
+      "status": "completed",
+      "equipment": "消弧线圈",
+      "process": "搬运与开箱",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001044",
+      "status": "completed",
+      "equipment": "断路器",
+      "process": "支架、灭弧室、支柱瓷瓶安装及拆除",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001045",
+      "status": "completed",
+      "equipment": "GIS（气体绝缘金属封闭开关设备）",
+      "process": "GIS对接与套管安装",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001046",
+      "status": "completed",
+      "equipment": "隔离开关",
+      "process": "导电部件拆、装",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001047",
+      "status": "completed",
+      "equipment": "隔离开关",
+      "process": "导电部件拆、装",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001049",
+      "status": "completed",
+      "equipment": "断路器",
+      "process": "支架、灭弧室、支柱瓷瓶安装及拆除",
+      "field_count": 5,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001050",
+      "status": "completed",
+      "equipment": "隔离开关",
+      "process": "闭锁装置拆、装",
+      "field_count": 6,
+      "page_refs": 1
+    },
+    {
+      "id": "sgcc_001051",
+      "status": "completed",
+      "equipment": "隔离开关",
+      "process": "传动部件拆、装",
+      "field_count": 6,
       "page_refs": 1
     }
   ]

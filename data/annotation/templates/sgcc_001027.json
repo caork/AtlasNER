@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001027",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 440,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "作业方案范例（变电检修专业）.docx",
+        "page_num": 6,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "打开气室后，所有人员撤离现场30分钟后方可继续工作，工作时人员站在上风侧，穿戴好防护用具。对户内设备，应先开启强排通风装置15分钟后，监测工作区域空气中SF6气体含量不得超过1000µL/L，含氧量大于18%，方可进入，工作过程中应当保持通风装置运转。回收、充装SF6气体时，工作人员应在上风侧操作，必要时应穿戴好防护用具。作业环境应保持通风良好，尽量避免和减少SF6气体泄漏到工作区域。",
+    "think_chain": "该段落来源于风险库变电专业.xlsx的Sheet3第440行，预提取字段涉及中毒窒息风险及SF6气体防护措施。PDF原文（第6页）为组织结构描述，与Excel字段无直接匹配，故根据Excel字段构造合理的passage。字段中无明显OCR错误，但注意“µL/L”为标准单位写法。预防措施描述清晰，可提取risk和prevention两个字段。",
+    "output_json": {
+      "risk": "中毒窒息",
+      "prevention": "打开气室后，所有人员撤离现场30分钟后方可继续工作，工作时人员站在上风侧，穿戴好防护用具。对户内设备，应先开启强排通风装置15分钟后，监测工作区域空气中SF6气体含量不得超过1000µL/L，含氧量大于18%，方可进入，工作过程中应当保持通风装置运转。回收、充装SF6气体时，工作人员应在上风侧操作，必要时应穿戴好防护用具。作业环境应保持通风良好，尽量避免和减少SF6气体泄漏到工作区域。"
+    },
+    "annotator_notes": "PDF原文与Excel字段不匹配，passage根据Excel字段构造。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

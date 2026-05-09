@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001581",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库直流电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 11,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 308,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "9 直流控制保护系统 网络风暴测试 主机死机 中 1.进行网络端口设置时应做好记录，避免恢复错误。2.进行测试前，应避免使大数据包进入运行主机的网络内，造成正常运行主机死机。 1、按厂家说明设置交换机的单播、广播、组播风暴控制定值，记录交换机的设置过程及检查信息。2、通过交换机向网络注入广播风暴，测试1小时，控制保护功能不受影响，测试完成后，主机状态显示恢复正常。",
+    "think_chain": "该段来自《风险库直流电专业.xlsx》Sheet1第11行对应的PDF原文第308页。表格中序号9对应“直流控制保护系统”的“网络风暴测试”工序，风险为“主机死机”，等级“中”。字段说明：equipment、process、risk、risk_level、prevention、control均可从原文直接提取。OCR问题：原文“网络风暴测试”因排版分为三行，但无实际错误；“避免恢复错误”中“错误”正确；无其他明显OCR错误。所有字段均存在且完整。",
+    "output_json": {
+      "equipment": "直流控制保护系统",
+      "process": "网络风暴测试",
+      "risk": "主机死机",
+      "risk_level": "中",
+      "prevention": "1.进行网络端口设置时应做好记录，避免恢复错误。2.进行测试前，应避免使大数据包进入运行主机的网络内，造成正常运行主机死机。",
+      "control": "1、按厂家说明设置交换机的单播、广播、组播风暴控制定值，记录交换机的设置过程及检查信息。2、通过交换机向网络注入广播风暴，测试1小时，控制保护功能不受影响，测试完成后，主机状态显示恢复正常。"
+    },
+    "annotator_notes": "序号9字段完整，无OCR需修正。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

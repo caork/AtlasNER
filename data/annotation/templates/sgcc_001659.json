@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001659",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库直流电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 89,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 365,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "12 泡沫喷淋系统 控制阀检查 系统误动作；阀门位置错误导致系统不能正常工作 低 1.检查控制阀前，确认动力瓶组或清水阀在未启动位置。2.检查后确认阀门位置正确方可离开。1.控制阀密封良好、启闭情况正常，外观检查无变形、锈蚀。2. 所有阀门应处于正常工作或备用状态，标识清晰、齐全、完好。",
+    "think_chain": "该段落来自《风险库直流电专业.xlsx》中Sheet1的第89行，对应的PDF页面原文第365页，匹配分数为1.0，说明完全匹配。原文中该条目为序号12，设备为“泡沫喷淋系统”，工序为“控制阀检查”，风险为“系统误动作；阀门位置错误导致系统不能正常工作”，风险等级为“低”，风险防范措施和工艺管控措施均完整。经过检查，原文无明显的OCR错误，字段格式清晰，无需修正。Excel预提取字段与原文一致，因此可以直接使用。所有6个字段（equipment、process、risk、risk_level、prevention、control）均可从原文中准确提取。",
+    "output_json": {
+      "equipment": "泡沫喷淋系统",
+      "process": "控制阀检查",
+      "risk": "系统误动作；阀门位置错误导致系统不能正常工作",
+      "risk_level": "低",
+      "prevention": "1.检查控制阀前，确认动力瓶组或清水阀在未启动位置。2.检查后确认阀门位置正确方可离开。",
+      "control": "1.控制阀密封良好、启闭情况正常，外观检查无变形、锈蚀。2. 所有阀门应处于正常工作或备用状态，标识清晰、齐全、完好。"
+    },
+    "annotator_notes": "原始字段完全匹配，无修正。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

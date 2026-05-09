@@ -1,0 +1,35 @@
+{
+  "id": "sgcc_001543",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 45,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 635,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "拒动\n1.排油泵控制或动力电源失去。\n2.排油阀门卡涩。\n3.排油阀电动机故障。\n1.结合巡视及维保定期对应急排油装置控制柜内电源、指示灯、二次电缆封堵等进行检查维护，对松动的配件进行紧固，对损坏的配件进行更换。\n2.周期检修时，至少进行三次电动阀遥控操作试验，\n3.排油阀电动机故障时，应按危急缺陷流程处理，及时联系检修人员消缺。",
+    "think_chain": "该段落来自《风险库变电倒闸.xls》典型违章库第45行对应PDF第635页。PDF原文包含“误动”和“拒动”两部分，根据Excel预提取字段“拒动”及其对应风险和预防措施，仅提取“拒动”部分。原文中风险点和措施均完整，无OCR错误（如“固件”误写为“固棒”等常见问题）。字段匹配度1.0，因此直接采用原文内容，未做修改。output_json中process、risk、prevention字段与Excel预提取一致。",
+    "output_json": {
+      "process": "拒动",
+      "risk": "1.排油泵控制或动力电源失去。2.排油阀门卡涩。3.排油阀电动机故障。",
+      "prevention": "1.结合巡视及维保定期对应急排油装置控制柜内电源、指示灯、二次电缆封堵等进行检查维护，对松动的配件进行紧固，对损坏的配件进行更换。2.周期检修时，至少进行三次电动阀遥控操作试验，3.排油阀电动机故障时，应按危急缺陷流程处理，及时联系检修人员消缺。"
+    },
+    "annotator_notes": "无误"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

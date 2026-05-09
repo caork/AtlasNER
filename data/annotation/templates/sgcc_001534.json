@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001534",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 36,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 633,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "17 专用 措施 站用交流 —— 切换 1.切换后导致重要负载失电。 1.站用电切换后应检查主变冷却器等重要负载运行正常",
+    "think_chain": "该段落来自PDF第633页（风险库变电倒闸.xls，典型违章库sheet第36行）。原文中第17条描述站用交流切换工序，包含风险及预防措施，与Excel预提取字段完全匹配。字段可提取：equipment（站用交流），process（切换），risk（切换后导致重要负载失电），prevention（站用电切换后应检查主变冷却器等重要负载运行正常）。OCR无明显错误，仅需将Excel中equipment的'——；站用交流'修正为'站用交流'。",
+    "output_json": {
+      "equipment": "站用交流",
+      "process": "切换",
+      "risk": "1.切换后导致重要负载失电。",
+      "prevention": "1.站用电切换后应检查主变冷却器等重要负载运行正常"
+    },
+    "annotator_notes": "无OCR错误，完全匹配"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

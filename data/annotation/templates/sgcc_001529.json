@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001529",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 31,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 633,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "14\n专用\n措施\n电容器\n——\n停役\n1.电容器未放电直接挂接地线或合接地闸刀，电容器剩余电荷对地放电导致人身伤害。\n1.电容器验电后，挂接地线或合接地闸刀前需先对电容器放电，确保无剩余电荷后方可挂上接地线或合上接地闸刀。",
+    "think_chain": "这段来源于《风险库变电倒闸.xls》的“典型违章库”Sheet第31行，对应PDF第633页第14条专用措施。原文清晰，无OCR错误。Excel预提取字段中equipment写了“——；电容器”，但实际设备应为“电容器”，已修正。process、risk、prevention字段与原文一致，其中risk和prevention各有一条，内容完整。段落中序号、专用、措施、电容器、停役等结构完整，直接提取即可。",
+    "output_json": {
+      "equipment": "电容器",
+      "process": "停役",
+      "risk": "1.电容器未放电直接挂接地线或合接地闸刀，电容器剩余电荷对地放电导致人身伤害。",
+      "prevention": "1.电容器验电后，挂接地线或合接地闸刀前需先对电容器放电，确保无剩余电荷后方可挂上接地线或合上接地闸刀。"
+    },
+    "annotator_notes": "修正了equipment字段，去掉了多余的‘——；’。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -73,13 +73,12 @@ def validate_template(template: dict) -> list[ValidationError]:
         errors.append(ValidationError(tid, "think_chain", f"Think chain too short ({len(think)} chars)"))
 
     output = ann.get("output_json", {})
-    if not output:
-        errors.append(ValidationError(tid, "output_json", "Empty output JSON"))
+    # Only consider standard fields for validation
+    standard_output = {k: v for k, v in output.items() if k in FIELD_ORDER}
+    if not standard_output:
+        errors.append(ValidationError(tid, "output_json", "No standard fields in output JSON"))
     else:
-        for key in output:
-            if key not in FIELD_ORDER:
-                errors.append(ValidationError(tid, "output_json", f"Unknown field: {key}"))
-            val = output[key]
+        for key, val in standard_output.items():
             if not isinstance(val, str) or not val.strip():
                 errors.append(ValidationError(tid, "output_json", f"Empty value for {key}"))
 

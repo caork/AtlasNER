@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001526",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 28,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 632,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "11\n专用\n措施\n母线\n双母线\n停复役\n1.倒母操作过程中，母线异常导致双母线跳闸。\n1.尽量缩短双母硬连接时间，倒闸操作过程严格落实倒闸操作相关规定，严防发生误操作事故。",
+    "think_chain": "该段来自《风险库变电倒闸.xls》第28行，对应PDF第632页。原文为表格形式，序号11的设备为“双母线”，工序为“停复役”，风险为“倒母操作过程中，母线异常导致双母线跳闸”，措施为“尽量缩短双母硬连接时间，倒闸操作过程严格落实倒闸操作相关规定，严防发生误操作事故”。字段清晰，无OCR错误。Excel预提取字段中equipment为“双母线”，process为“停复役”，risk和prevention各一条，与原文完全匹配。因此可直接提取。但原文中风险编码和措施编码均使用“1.”，需注意区分。",
+    "output_json": {
+      "equipment": "双母线",
+      "process": "停复役",
+      "risk": "1.倒母操作过程中，母线异常导致双母线跳闸。",
+      "prevention": "1.尽量缩短双母硬连接时间，倒闸操作过程严格落实倒闸操作相关规定，严防发生误操作事故。"
+    },
+    "annotator_notes": "无OCR错误，字段完整。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

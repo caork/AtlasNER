@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001516",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 18,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 631,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "挂地线\n1.挂接地线误入带电间隔。\n2.挂接地线人身触碰接地线。\n3.挂接地线操作顺序错误。\n1.挂接地线前进行“三核对”（核对名称、编号、位置)，防止走错间隔。\n2.挂接地线穿绝缘靴、戴绝缘手套，严禁触碰接地线。\n3.挂接地线时先装设接地端，再挂导体端。\n4.选择对应电压等级的接地线",
+    "think_chain": "该段落来自《风险库变电倒闸》典型违章库文档第631页，对应Excel第18行预提取字段。PDF原文中“挂地线”属于“接地线”子项，风险与防范措施完整匹配，无OCR错误。字段包括equipment（设备：接地线）、process（工序：挂地线）、risk（风险：3条）、prevention（防范：4条）。Excel中的equipment字段包含“——”分隔符，为原文档格式，保留。prevention第4条在Excel中为“选择对应电压等级的接地线”，与PDF一致，无需修正。所有字段均提取完整。",
+    "output_json": {
+      "equipment": "——；接地线",
+      "process": "挂地线",
+      "risk": "1.挂接地线误入带电间隔。\n2.挂接地线人身触碰接地线。\n3.挂接地线操作顺序错误。",
+      "prevention": "1.挂接地线前进行“三核对”（核对名称、编号、位置)，防止走错间隔。\n2.挂接地线穿绝缘靴、戴绝缘手套，严禁触碰接地线。\n3.挂接地线时先装设接地端，再挂导体端。\n4.选择对应电压等级的接地线"
+    },
+    "annotator_notes": "Excel预提取字段与PDF完全一致，无修正。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001656",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库直流电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 86,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 364,
+        "match_score": 0.857
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "9\n泡沫喷淋系统\n连接管检查\n跌落\n高\n1.宜用升降车或梯子辅助高处作业，高处作业人员正确使用安全带。\n2.高空作业人员使用的工具及安装用的零部件，应放在随身佩带的工具袋内，不可随便向下丢掷，工具等用布带系好。\n3.从工具袋内取用工具时，注意工具袋开口方向，防止工具袋内工具掉落。\n1.外观无破损，无异常受力。\n2. 连接牢固，无折痕硬伤，管内无积水。",
+    "think_chain": "该段文字来自《风险库直流电专业.xlsx》的Sheet1第86行对应的PDF原文第364页，匹配分0.857，属于泡沫喷淋系统连接管检查工序。PDF原文中明确列出了序号9的完整信息：设备为泡沫喷淋系统，工序为连接管检查，风险为跌落，风险等级为高，防范措施3条，工艺管控措施2条。Excel预提取字段中risk多写了“密封失效”，该词在原文对应工序中不存在，应修正为仅“跌落”。其他字段如equipment、process、risk_level、prevention、control与原文一致，但prevention中多出的“可靠拉上的工具袋内”等内容属于前一条记录（序号8），不包含在当前passage内。原文未发现OCR错误。故最终output_json仅修正risk字段，其余保留。",
+    "output_json": {
+      "equipment": "泡沫喷淋系统",
+      "process": "连接管检查",
+      "risk": "跌落",
+      "risk_level": "高",
+      "prevention": "1.宜用升降车或梯子辅助高处作业，高处作业人员正确使用安全带。2.高空作业人员使用的工具及安装用的零部件，应放在随身佩带的工具袋内，不可随便向下丢掷，工具等用布带系好。3.从工具袋内取用工具时，注意工具袋开口方向，防止工具袋内工具掉落。",
+      "control": "1.外观无破损，无异常受力。2. 连接牢固，无折痕硬伤，管内无积水。"
+    },
+    "annotator_notes": "修正Excel预提取字段中的risk，删除不存在的‘密封失效’；passage仅包含序号9的内容，排除无关的前序段落。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

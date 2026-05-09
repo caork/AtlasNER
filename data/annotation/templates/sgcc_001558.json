@@ -1,0 +1,35 @@
+{
+  "id": "sgcc_001558",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 60,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 638,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "8\n集控联调操作\n调度信息表遥控、遥测、遥信点有缺失，或有错误，造成误操作。\n调度信息表编制人员应确保点表正确性。调度自动化系统数据库维护人员，在制作和更新数据库前，应先核查信息表。变电站现场工作负责人，应根据现场实际情况，辨识出设计图纸、SCD等中存在的错误，在开展远动工作前，核查信息表。",
+    "think_chain": "该段落来自风险库变电倒闸.xls的典型违章库Sheet，第60行，对应PDF原文第638页第8条“集控联调操作”。原文中风险描述与Excel预提取完全一致，预防措施也一致，无OCR错误。可提取字段包括process（集控联调操作）、risk（调度信息表遥控、遥测、遥信点有缺失，或有错误，造成误操作）、prevention（调度信息表编制人员应确保点表正确性...）。由于原文结构清晰，无需修正。字段完整，故输出JSON包含这三个字段。",
+    "output_json": {
+      "process": "集控联调操作",
+      "risk": "调度信息表遥控、遥测、遥信点有缺失，或有错误，造成误操作。",
+      "prevention": "调度信息表编制人员应确保点表正确性。调度自动化系统数据库维护人员，在制作和更新数据库前，应先核查信息表。变电站现场工作负责人，应根据现场实际情况，辨识出设计图纸、SCD等中存在的错误，在开展远动工作前，核查信息表。"
+    },
+    "annotator_notes": ""
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

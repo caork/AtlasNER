@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001147",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 693,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "作业方案范例（变电检修专业）.docx",
+        "page_num": 11,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "（5）安徽送变电：负责湖泉Ⅱ线避雷器及一次引线配合耐压试验拆除及复装；负责提供吊车指挥协助开展1000kVⅠ母线GM104气室B相、GM113气室C相异常盆式绝缘子及相关母线更换，湖泉Ⅱ线避雷器配合耐压试验拆除及复装起重作业；负责工作过程中的吊车作业实施，明确工作中的危险点及注意事项，作业前检查车辆的车况良好，由专人带领按指定线路进出现场，确保吊车作业安全开展。",
+    "think_chain": "该段落来自风险库变电专业.xlsx的Sheet3第693行，匹配PDF第11页原文。Excel预提取字段为风险“物体打击”和措施“拆掉后的设备连接线用尼龙绳固定”。PDF原文中，安徽送变电的职责明确提到了避雷器及一次引线的拆除复装以及吊车起重作业，这些作业过程中存在物体打击风险，但原文并未直接写明具体预防措施。因此，passage选取了与风险相关的作业描述部分，而措施字段直接采用Excel中的内容。原文中无明显OCR错误，仅需注意标点符号的连贯性。由于措施在原文中缺失，output_json直接保留Excel字段。",
+    "output_json": {
+      "risk": "物体打击",
+      "prevention": "拆掉后的设备连接线用尼龙绳固定，防止设备连接线摆动造成邻近设备损坏。"
+    },
+    "annotator_notes": "匹配较好，但措施未在原文中出现，需结合Excel。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

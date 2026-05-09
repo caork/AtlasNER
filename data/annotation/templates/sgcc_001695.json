@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001695",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库输电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 16,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 441,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "表2-6\n典型作业风险库-零星金具和塔材更换\n序号\n设备\n工作内容\n风险类型\n风险等级\n风险防范措施\n质量管控措施\n2\n零星金具\n和塔材更\n换\n登杆作业\n高空坠落、物\n体打击、触电\n中\n1.塔上作业人员检查登杆工具及安全防护用具并确保良好可靠。\n2.塔上作业人员戴好安全帽，携带安全带、后背保护绳、传递绳开始\n登塔。\n3.塔上作业人员登杆到适当位置系好安全带、后背保护绳后，再适当\n的位置挂好起吊绳。\n执行《电力金通用技术\n条件》（GB/T\n2314-2008）、《连接金\n具》（DL/T 759-2009）、\n《输电线路杆塔及电力\n金具用热镀锌螺栓与螺\n母》（DL/T 284-2012）\n等规程规范要求",
+    "think_chain": "该段落来自风险库输电专业.xlsx的Sheet1第16行，对应PDF第441页的表2-6，匹配分数1.0，完全匹配。预提取的6个字段（equipment、process、risk、risk_level、prevention、control）均可在原文中找到对应内容，且无缺失。OCR错误检查：原文中“再适当的位置”疑似应为“在适当的位置”，但原文如此，保持原样；control字段中“GB/T2314-2008”在原文中有空格“GB/T 2314-2008”，Excel预提取缺少空格，需修正。其他内容无误。",
+    "output_json": {
+      "equipment": "零星金具和塔材更换",
+      "process": "登杆作业",
+      "risk": "高空坠落、物体打击、触电",
+      "risk_level": "中",
+      "prevention": "1.塔上作业人员检查登杆工具及安全防护用具并确保良好可靠。2.塔上作业人员戴好安全帽，携带安全带、后背保护绳、传递绳开始登塔。3.塔上作业人员登杆到适当位置系好安全带、后背保护绳后，再适当的位置挂好起吊绳。",
+      "control": "执行《电力金通用技术条件》（GB/T 2314-2008）、《连接金具》（DL/T 759-2009）、《输电线路杆塔及电力金具用热镀锌螺栓与螺母》（DL/T 284-2012）等规程规范要求"
+    },
+    "annotator_notes": "原文中'再适当的位置'未修正，保持原样；control字段修正了空格错误。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

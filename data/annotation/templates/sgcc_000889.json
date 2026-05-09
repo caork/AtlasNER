@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_000889",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 234,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-8.设备技术〔2022〕75号　国网设备部关于进一步强化生产现场作业风险防控的通知.pdf",
+        "page_num": 14,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "3．表2-1“变压器类设备检修工序风险库”，序号：57 和 58 中风险防范措施：“1.应注意与带电设备保持足够的安全距离，准备充足的施工电源及照明。”修订为：“1.应注意与相邻带电设备保持足够的安全距离，做好低压反送电的安全措施，夜间施工准备充足的施工电源及照明。”",
+    "think_chain": "这段文本来自《风险库变电专业》PDF第14页，对应表2-1序号57和58的风险防范措施修订。Excel预提取字段中risk为“物体打击”，prevention为旧版措施。原文中明确将旧措施修订为新措施，因此prevention必须更新。risk字段虽未在原文中直接出现，但Excel中该条记录的风险类型为“物体打击”，且原文未否定，故保留。需注意原文“1.”序号在修订前后均存在，但Excel预提取字段不含序号，因此输出时去掉序号。无明显OCR错误，但需注意原文换行连接。",
+    "output_json": {
+      "risk": "物体打击",
+      "prevention": "应注意与相邻带电设备保持足够的安全距离，做好低压反送电的安全措施，夜间施工准备充足的施工电源及照明。"
+    },
+    "annotator_notes": "根据原文修订prevention字段，补充了“相邻”、“低压反送电的安全措施”等内容。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

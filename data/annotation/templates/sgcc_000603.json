@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_000603",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet2",
+    "row": 144,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 155,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "54 隔离开关 手动机构检修 机械伤害，触电；卡涩、信号错误 低 1.工作前断开辅助开关二次电源。2.检修人员避开传动系统。 1.机构传动齿轮配合间隙符合技术要求，转动灵活、无卡涩、锈蚀。2.机构传动齿轮应涂符合当地环境条件的润滑脂。3.接线端子排无锈蚀、缺损，固定牢固。4.辅助开关转换可靠、接触良好。5.二次接线正确，无松动、接触良好，排列整齐美观。",
+    "think_chain": "该段落来自《风险库变电专业.xlsx》的Sheet2中行号144对应的PDF页面第155页。原文中第54条工序“手动机构检修”的风险和防范措施与Excel预提取字段匹配。可提取的字段包括：序号、设备、工序、风险可能导致后果、工序风险库等级、风险防范措施、工艺管控措施。Excel仅提取了risk和prevention，但原文提供了完整信息。OCR检查未发现明显错误，仅原文中风险后果使用分号分隔，Excel改用逗号，属于格式调整而非错误。由于Excel预提取字段已完整且无错误，直接采用。",
+    "output_json": {
+      "risk": "机械伤害，触电、卡涩、信号错误",
+      "prevention": "1.工作前断开辅助开关二次电源。2.检修人员避开传动系统。"
+    },
+    "annotator_notes": "Excel字段与原文一致，仅分号改为逗号，无需修正。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

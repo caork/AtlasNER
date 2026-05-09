@@ -1,0 +1,35 @@
+{
+  "id": "sgcc_001509",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 11,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 630,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "手车推入\n1.带负荷（带地刀）推进手车；\n2.手车推进时倾倒。\n1.手车式隔离开关拉出或推入前，检查开关确在分闸位置。\n2.对于升降式转运小车，提起手车时应检查手车滑轮均在转运小车导轨上，手车限位落槽，方可提升手车。手车推进前应认真检查转运小车与开关柜紧密连接，手车触头无变形、开关柜内无异物，转运小车车轮锁定。",
+    "think_chain": "本段来自《风险库变电倒闸.xls》典型违章库第11行，对应PDF第630页“手车开关-中置式”部分。预提取字段的process为“手车推入”，risk和prevention与原文中中置式手车推入内容一致。原文中“运转小车”应为“转运小车”的OCR错误，已修正。字段完整，无需补充。",
+    "output_json": {
+      "process": "手车推入",
+      "risk": "1.带负荷（带地刀）推进手车；2.手车推进时倾倒。",
+      "prevention": "1.手车式隔离开关拉出或推入前，检查开关确在分闸位置。2.对于升降式转运小车，提起手车时应检查手车滑轮均在转运小车导轨上，手车限位落槽，方可提升手车。手车推进前应认真检查转运小车与开关柜紧密连接，手车触头无变形、开关柜内无异物，转运小车车轮锁定。"
+    },
+    "annotator_notes": "修正OCR错误：运转小车→转运小车。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

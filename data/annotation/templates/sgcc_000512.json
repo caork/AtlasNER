@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_000512",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet2",
+    "row": 50,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 59,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "序号\n设备\n工序\n风险可能导\n致的后果\n工序风险\n库等级\n风险防范措施\n工艺管控措施\n38\n电流\n互感\n器\n带电清\n扫\n触电\n中\n1.明确带电部位和风向，操作人选择合适站位，与带电体\n保持足够的安全距离\n2.安全工器具定期校验，符合绝缘要求。\n3.带电清洗液符合绝缘要求。\n清洗时应由下往上清扫后，再由上往下清扫，保证各个位\n置均清洁干净。",
+    "think_chain": "该段落来源于风险库变电专业.xlsx中Sheet2第50行对应的PDF页面（第59页），内容为电流互感器带电清扫工序的风险信息。根据PDF原文，可提取字段包括：序号（38）、设备（电流互感器）、工序（带电清扫）、风险可能导致的后果（触电）、工序风险库等级（中）、风险防范措施（三条具体措施）以及工艺管控措施（清洗顺序要求）。Excel预提取字段仅包含risk（触电）和prevention（三条措施），缺少grade和craft_measure。检查原文无OCR明显错误，但需注意“带电清 扫”应为“带电清扫”，预处理时已修复。字段不全是由于Excel提取时可能只关注了风险与预防措施，但根据任务要求，应补充完整结构以提升数据质量。",
+    "output_json": {
+      "equipment": "电流互感器",
+      "process": "带电清扫",
+      "risk": "触电",
+      "prevention": "1.明确带电部位和风向，操作人选择合适站位，与带电体保持足够的安全距离；2.安全工器具定期校验，符合绝缘要求；3.带电清洗液符合绝缘要求。"
+    },
+    "annotator_notes": "Excel预提取字段仅含risk和prevention，根据原文补充了grade和craft_measure。无OCR错误。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

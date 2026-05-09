@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001562",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 64,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 638,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "12 变电站远动装置改造，或间隔总控单元改造过程中，转发表导入错误，导致误操作。改造过程中，应确保下装到新装置的转发表是最新、正确的。未正式投运的新装置或总控单元，不能执行监控操作任务。",
+    "think_chain": "本段来自PDF《典型违章库》第638页，对应Excel记录第64行。原文中第12条风险描述与Excel预提取的risk字段完全一致，预防措施也完全一致。无OCR错误，字段清晰可提取。由于原文中只有risk和prevention两个字段，且均为直接表述，因此最终output_json直接包含这两个字段。passage保留了原文序号和完整句子，格式清理后去除了页码和多余空行。",
+    "output_json": {
+      "risk": "变电站远动装置改造，或间隔总控单元改造过程中，转发表导入错误，导致误操作。",
+      "prevention": "改造过程中，应确保下装到新装置的转发表是最新、正确的。未正式投运的新装置或总控单元，不能执行监控操作任务。"
+    },
+    "annotator_notes": "完全匹配，无需修正"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

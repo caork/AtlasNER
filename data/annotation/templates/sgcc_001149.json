@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001149",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 697,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "作业方案范例（变电检修专业）.docx",
+        "page_num": 7,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "1 GM104气室B相母线更换\nGM104气室B相局放异常部位盆子及相关母线更换及气务处理\n6月23日-6月30日\n检修专业负责人：程慧敏\n施工单位负责人：任少飞\n安全监督人：陈旭东\n验收负责人：程慧敏\n风险：机械伤害。预防措施：高处作业应正确使用安全带，作业人员在转移作业位置时不准失去安全保护。",
+    "think_chain": "该段落来自风险库变电专业.xlsx的Sheet3第697行，对应PDF第7页的检修任务表格。PDF原文仅列出设备更换信息（如GM104气室B相母线更换），未包含风险及预防措施字段。Excel预提取的风险和预防措施字段与PDF内容不匹配，因此需要根据Excel字段构造passage。原文无OCR错误，所有文字清晰可识别。由于Excel字段是独立的，无法从PDF中直接提取，故将风险信息附加到第一条检修任务后，形成完整的结构化段落。",
+    "output_json": {
+      "risk": "机械伤害",
+      "prevention": "高处作业应正确使用安全带，作业人员在转移作业位置时不准失去安全保护。"
+    },
+    "annotator_notes": "PDF原文无风险字段，根据Excel预提取字段构造passage，仅保留第一条任务信息。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

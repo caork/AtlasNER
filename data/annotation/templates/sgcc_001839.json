@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001839",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库配电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 128,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 579,
+        "match_score": 0.833
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "6. 接户线、进户线\n带电断、接接户线、进户线\n物体打击、触电、电弧伤害、高处坠落\n中\n1.确认支线为空载线路。\n2.对作业范围内的带电导线、绝缘子、横担等应进行必要的绝缘遮蔽，绝缘遮蔽按照“由近到远、从上到下”的顺序，拆除时相反。\n3.接引线时按照“先接零线、后接相线”，断引线时顺序相反。\n4.使用绝缘斗臂车时，遵守绝缘斗臂车使用规定。",
+    "think_chain": "该段落来自《风险库配电专业.xlsx》的Sheet1第128行，对应PDF原文第579页。PDF中该页包含两个子工序：停电断、接接户线、进户线和带电断、接接户线、进户线。根据Excel预提取字段，只选取带电部分。可提取的字段包括：equipment（接户线、进户线）、process（带电断、接接户线、进户线）、risk（物体打击、触电、电弧伤害、高处坠落）、risk_level（中）、prevention（四条措施）。control字段在原文中未出现，因此设为“无”。OCR没有明显错误。Excel中prevention第4条写为“使用绝缘斗臂车、绝缘梯等承载工具时，遵守其相应使用规定”，但原文只有“使用绝缘斗臂车时，遵守绝缘斗臂车使用规定”，应以原文为准进行修正。",
+    "output_json": {
+      "equipment": "接户线、进户线",
+      "process": "带电断、接接户线、进户线",
+      "risk": "物体打击、触电、电弧伤害、高处坠落",
+      "risk_level": "中",
+      "prevention": "1.确认支线为空载线路。2.对作业范围内的带电导线、绝缘子、横担等应进行必要的绝缘遮蔽，绝缘遮蔽按照“由近到远、从上到下”的顺序，拆除时相反。3.接引线时按照“先接零线、后接相线”，断引线时顺序相反。4.使用绝缘斗臂车时，遵守绝缘斗臂车使用规定。",
+      "control": "无"
+    },
+    "annotator_notes": "根据PDF原文修正了Excel中预防措施的第4条，去除了原文没有的“绝缘梯等承载工具”。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001512",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 14,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 630,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "接地刀闸\nAIS\n分闸\n1.瓷瓶断裂，造成人身伤害。\n2.分闸位置检查不到位，接地闸刀动静触头安全距离不够，导致带接地合闸送电\n3.独立接地闸刀漏拉开，导致带接地合闸送电。\n1.就地操作时，操作人应注意站位，防止传动瓷瓶断裂伤人。\n2.拉开接地闸刀后，应检查三相动触头是否完全分闸到位，切实做到实际位置、机械指示、后台状态三者一致且正确。\n3.送电前再次检查所有接地闸刀确已分闸。",
+    "think_chain": "该段落来源于《风险库变电倒闸.xls》典型违章库第14行，对应PDF第630页“接地刀闸”部分下的“AIS—分闸”子项。PDF原文与Excel预提取字段高度匹配，风险点与预控措施一一对应，无OCR错误。Excel中equipment字段包含“AIS；接地刀闸”，但原文结构为“接地刀闸”作为设备大类，“AIS”为具体类型，故在passage中保留层次关系。process字段为“分闸”，risk和prevention字段直接从原文摘取，仅补充了Excel中缺失的句号。整体字段完整，无需额外修正。",
+    "output_json": {
+      "equipment": "AIS；接地刀闸",
+      "process": "分闸",
+      "risk": "1.瓷瓶断裂，造成人身伤害。\n2.分闸位置检查不到位，接地闸刀动静触头安全距离不够，导致带接地合闸送电\n3.独立接地闸刀漏拉开，导致带接地合闸送电。",
+      "prevention": "1.就地操作时，操作人应注意站位，防止传动瓷瓶断裂伤人。\n2.拉开接地闸刀后，应检查三相动触头是否完全分闸到位，切实做到实际位置、机械指示、后台状态三者一致且正确。\n3.送电前再次检查所有接地闸刀确已分闸。"
+    },
+    "annotator_notes": "原文中风险第三点缺少句号，已根据原文补全。Equipment字段保留Excel原始格式，但实际为AIS类型下的接地刀闸操作。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

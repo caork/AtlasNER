@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_000965",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 355,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 102,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "4 断路器 二次回路控制电缆布置 低压触电；控回断线；二次线缆损伤 中 1.拆接二次电缆时，作业人员必须断开与断路器相关的各类电源并确定所拆电缆确实无电压，并在监护人员监护下进行作业。2.机构箱内二次的电缆布线时，应与箱内加热器保持足够的距离（距离不小于50mm），防止二次线缆损伤。1.电缆、管道排列整齐美观。2.端子排连接紧固，接线图实一致。3.电缆应无损伤，电缆切口部位应做好防水、绝缘措施。4.拆接二次电缆时应做好二次线头绝缘包覆，并做好二次拆接线记录。5.拆接二次电缆时应做好二次安全措施。6.电缆与加热器之间的距离应大于50mm。",
+    "think_chain": "该段文字来自《风险库变电专业》文档第102页，匹配分1.0，内容完整。可提取字段包括工序、设备、风险、工序风险等级、防范措施、工艺管控措施等。Excel预提取字段仅含risk和prevention，且内容准确，无OCR错误。原文中“控回断线”为“控制回路断线”的常见简写，无需修正；“接线图实一致”意为“接线图与实际一致”，保留原样。Excel中prevention字段存在多余空格，已在输出中清理。由于任务要求仅验证并修正Excel预提取字段，故output_json只包含risk和prevention。",
+    "output_json": {
+      "risk": "二次线缆损伤",
+      "prevention": "机构箱内二次电缆布线时，应与箱内加热器保持足够的距离（距离不小于50mm），防止二次线缆损伤。"
+    },
+    "annotator_notes": "字段匹配，无OCR错误，已清理空格。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

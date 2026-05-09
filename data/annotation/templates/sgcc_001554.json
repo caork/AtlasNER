@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001554",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 56,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 637,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "4 顺控操作过程中，现场开关、刀闸设备未变位至相应状态，导致后续操作引发事故跳闸\n预控措施：\n1.计划性停复役操作宜选择现场人员到达后开展远方顺控操作。\n2.应确保现场设备状态确认方式安全可靠，如采用图像识别系统、微动开关等成熟技术方案。",
+    "think_chain": "该段落来自文档第637页附录8特殊场景风险库，原文为表格形式，序号4对应的风险及预控措施与Excel预提取字段完全匹配。可提取的字段包括风险（risk）和预控措施（prevention），原文中未出现其他字段如操作对象、设备类型等，但Excel仅预提取了这两个字段。经检查，无OCR错误，无需修正。",
+    "output_json": {
+      "risk": "顺控操作过程中，现场开关、刀闸设备未变位至相应状态，导致后续操作引发事故跳闸",
+      "prevention": "1.计划性停复役操作宜选择现场人员到达后开展远方顺控操作。2.应确保现场设备状态确认方式安全可靠，如采用图像识别系统、微动开关等成熟技术方案。"
+    },
+    "annotator_notes": "无OCR修正，passage提取完整。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_000453",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 246,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 255,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "序号 80  设备 通信专用DC/DC电源屏  工序 通信专用DC/DC电源模块更换、检修  风险可能导致的后果 母线过压、短路  工序风险库等级 低  风险防范措施 1.断开通信专用DC/DC模块直流输入断路器。2.检查新更换的通信专用DC/DC模块型号、参数正常，回路无短路故障，极性无误。3.通信专用DC/DC模块更换后合上直流输入断路器，修改通信地址、控制（手动、自动）方式。  工艺管控措施 1.通信专用DC/DC模块通信地址、控制方式设置正确。2.通信专用DC/DC模块输出电压、电流正常，状态指示正常。3.检查监控装置与通信专用DC/DC模块通信正常。",
+    "think_chain": "该段落来源于《风险库变电专业.xlsx》的Sheet1的第246行，对应PDF原文第255页。原文为清晰表格形式，无OCR错误。可提取6个字段：equipment、process、risk、risk_level、prevention、control。所有字段均完整存在于原文中，无需修正。prevention和control分别对应“风险防范措施”和“工艺管控措施”。",
+    "output_json": {
+      "equipment": "通信专用DC/DC电源屏",
+      "process": "通信专用DC/DC电源模块更换、检修",
+      "risk": "母线过压、短路",
+      "risk_level": "低",
+      "prevention": "1.断开通信专用DC/DC模块直流输入断路器。2.检查新更换的通信专用DC/DC模块型号、参数正常，回路无短路故障，极性无误。3.通信专用DC/DC模块更换后合上直流输入断路器，修改通信地址、控制（手动、自动）方式。",
+      "control": "1.通信专用DC/DC模块通信地址、控制方式设置正确。2.通信专用DC/DC模块输出电压、电流正常，状态指示正常。3.检查监控装置与通信专用DC/DC模块通信正常。"
+    },
+    "annotator_notes": "字段与原文完全匹配，无误。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_000599",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet2",
+    "row": 140,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 154,
+        "match_score": 0.5
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "序\n号\n设备\n工序\n风险可能导\n致的后果\n工序风险\n库等级\n风险防范措施\n工艺管控措施\n50\n隔离开关\n电动操动\n机构检修\n（电动机\n检修）\n触电；机械\n卡涩\n低\n1.电机电源和控制电源确已断开，二次电源隔离措施符合现场实际条件。\n2.拆除操动机构外接二次电缆接线后，裸露线头应进行绝缘包扎。\n1.安装接线前应核对相序。\n2.检查轴承、定子与转子间的间隙应均匀，无摩擦、\n异响。\n3.电机固定牢固，联轴器、地角、垫片等部位应做好\n标记，原拆原装。\n4.检查电机绝缘电阻、直流电阻符合相关技术标准要\n求。",
+    "think_chain": "段落来自《风险库变电专业.xlsx》Sheet2第140行，对应PDF第154页序号50，设备为隔离开关电动操动机构检修（电动机检修）。可提取字段包括risk（风险可能导致后果）和prevention（风险防范措施），以及工序风险库等级（低）、工艺管控措施等。预提取字段中，risk为“触电、机械卡涩”，prevention为“1.电机电源和控制电源确已断开， 二次电源隔离措施符合现场实际条棒。2.拆除操动机构外接二次电缆接线后， 裸露线头应进行绝缘包扎。”但prevention中“条棒”是OCR错误，应为“条件”。另外注意PDF原文中风险防范措施和工艺管控措施分开列写，但只预提取了风险防范措施。因用户要求只输出预提取字段对应的结构，因此output_json仅包含risk和prevention，并修正OCR错误。",
+    "output_json": {
+      "risk": "触电；机械卡涩",
+      "prevention": "1.电机电源和控制电源确已断开，二次电源隔离措施符合现场实际条件。2.拆除操动机构外接二次电缆接线后，裸露线头应进行绝缘包扎。"
+    },
+    "annotator_notes": "修正预提取字段中OCR错误'条棒'为'条件'；risk中分号保留原样。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

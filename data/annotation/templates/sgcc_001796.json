@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001796",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库配电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 85,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 534,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "序号\n设备\n工序\n风险可能导致\n的后果\n工序风险\n库等级\n风险防范措施\n工艺管控措施\n8\n户外分支\n箱\n外观保养\n机械伤害、触\n电\n低\n1.明确带电部位，与带电体保持足够的安全距离。\n1.外观无异常，标识牌、双编图实相符并命名正确。",
+    "think_chain": "该段落来自风险库配电专业.xlsx中Sheet1第85行，对应PDF第534页序号8的“户外分支箱-外观保养”记录。Excel预提取字段中风险为“机械伤害、烫伤、触电”，但PDF原文仅出现“机械伤害、触电”，无“烫伤”，判断为Excel录入错误，需修正为原文内容。其他字段如设备、工序、风险等级、防范措施和工艺管控措施均与原文一致，无需修改。防范措施和工艺管控措施在原文中各有一条，格式正确。OCR识别无其他错误。因此最终输出中风险字段修正为“机械伤害、触电”。",
+    "output_json": {
+      "equipment": "户外分支箱",
+      "process": "外观保养",
+      "risk": "机械伤害、触电",
+      "risk_level": "低",
+      "prevention": "1.明确带电部位，与带电体保持足够的安全距离。",
+      "control": "1.外观无异常，标识牌、双编图实相符并命名正确。"
+    },
+    "annotator_notes": "Excel中风险项多出“烫伤”，根据原文修正为“机械伤害、触电”。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

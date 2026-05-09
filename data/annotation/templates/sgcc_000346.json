@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_000346",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 139,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 154,
+        "match_score": 0.889
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "52 隔离开关 电动操动机构检修（二次部件） 触电；拒分、拒合，信号错误 低 1.电机电源和控制电源确已断开，二次电源隔离措施符合现场实际条件。2.拆除操动机构外接二次电缆接线后，裸露线头应进行绝缘包扎。 1.测量分、合闸控制回路绝缘电阻符合相关技术标准要求。2.接线端子排无锈蚀、缺损，固定牢固。3.辅助开关、中间继电器等二次元件，转换正常、接触良好。4.二次接线正确，无松动、接触良好，排列整齐美观。5.加热、照明装置启动正常。",
+    "think_chain": "该段落来自《风险库变电专业.xlsx》的Sheet1第139行，对应PDF原文第154页序号52的记录。字段包括：equipment（隔离开关）、process（电动操动机构检修（二次部件））、risk（触电；拒分、拒合，信号错误）、risk_level（低）、prevention（两条防范措施）和control（五条工艺管控措施）。PDF原文中risk字段使用分号分隔，Excel中误用逗号，但语义一致。Excel中prevention字段存在OCR错误：'条棒'应为'条件'；其他字段如control中的'固定牢固'正确。所有字段均可从原文直接提取，无需补全。",
+    "output_json": {
+      "equipment": "隔离开关",
+      "process": "电动操动机构检修（二次部件）",
+      "risk": "触电；拒分、拒合，信号错误",
+      "risk_level": "低",
+      "prevention": "1.电机电源和控制电源确已断开，二次电源隔离措施符合现场实际条件。2.拆除操动机构外接二次电缆接线后，裸露线头应进行绝缘包扎。",
+      "control": "1.测量分、合闸控制回路绝缘电阻符合相关技术标准要求。2.接线端子排无锈蚀、缺损，固定牢固。3.辅助开关、中间继电器等二次元件，转换正常、接触良好。4.二次接线正确，无松动、接触良好，排列整齐美观。5.加热、照明装置启动正常。"
+    },
+    "annotator_notes": "修正了Excel中的OCR错误：'条棒'→'条件'；risk字段保留原文分号格式。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

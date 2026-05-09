@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_000916",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 286,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "Q_GDW_12152-2021_施工安全风险管理规程.pdf",
+        "page_num": 119,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "四、GIS 套管安装（D 值126，3 级）\n（24）220kV 及以下电压等级的套管全部国产化，施工技术成熟，安装引起的损失后果较小，按4 级管控，D 值54（6×3×3）。\n（25）吊装过程中应设专人指挥，指挥人员应站在能全面观察到整个作业范围及吊车司机和司索人员的位置，对于任何工作人员发出紧急信号，必须停止吊装作业。\n（26）套管吊离地面100mm 时，应停止起吊，检查吊车、钢丝绳扣是否平稳牢靠，确认无误后方可继续起吊。起吊后任何人不得在吊件吊装范围内停留或走动。在吊件距就位点的正上方200～300mm 稳定后，作业人员方可开始进入作业点。",
+    "think_chain": "该段落选自Q/GDW 12152—2021标准第119页，对应表H.3续中的“四、GIS套管安装”工序。Excel预提取字段中risk为“物体打击”，prevention包含两句话，其中第一句与原文（25）完全一致，但第二句“吊车应停放在空旷平整的地面……”在原文中未出现，可能来自其他记录或合并错误。因此，passage仅提取原文中与GIS套管安装相关的（24）至（26）条，保留完整序号和内容，清理了页眉和页码。原文无明显OCR错误，但注意“D 值126”后括号内“6×3×3”可能存在混淆，但已按原文保留。可提取的字段包括：risk（物体打击）、prevention（（25）所述措施）、procedure（GIS套管安装）、D值（126和54）、风险等级（3级和4级）。Excel中prevention的额外内容因不匹配原文，故不纳入passage。",
+    "output_json": {
+      "process": "GIS套管安装",
+      "risk": "物体打击",
+      "risk_level": 3,
+      "prevention": "吊装过程中应设专人指挥，指挥人员应站在能全面观察到整个作业范围及吊车司机和司索人员的位置，对于任何工作人员发出紧急信号，必须停止吊装作业。"
+    },
+    "annotator_notes": "Excel中prevention后半句不在原文中，已剔除；passage仅包含原文相关段落。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

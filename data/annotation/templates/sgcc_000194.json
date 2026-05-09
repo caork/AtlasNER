@@ -1,0 +1,37 @@
+{
+  "id": "sgcc_000194",
+  "status": "completed",
+  "source": {
+    "excel_file": "89号文拆分标注.xlsx",
+    "sheet": "Sheet1",
+    "row": 196,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 154,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "51 隔离开关 电动操动机构检修（减速器检修） 机械伤害、触电；卡涩 低 1.工作前断开电机电源并确认无电压。2.减速器应与其他转动部件完全脱离。 1.减速器齿轮轴、齿轮完好无锈蚀。2.减速器齿轮轴、齿轮配合间隙符合厂家规定，并加适量符合当地环境条件的润滑脂。",
+    "think_chain": "本段来自《89号文拆分标注》PDF第154页，对应Excel行196的预提取字段。在PDF原文中，第51条明确描述了隔离开关电动操动机构减速器检修的工序，与Excel的equipment和process完全匹配。Excel中risk字段仅提取了“机械伤害”，但原文风险后果完整描述为“机械伤害、触电；卡涩”，可能为简化或遗漏，需修正为完整内容。prevention和control字段Excel仅各取了第二条措施，但原文中各有两条，且结构清晰，应全部保留以确保完整性。经检查，未发现明显OCR错误，如“卡涩”为专业术语，非误识。字段来源合理，无缺失。",
+    "output_json": {
+      "equipment": "隔离开关",
+      "process": "电动操动机构检修（减速器检修）",
+      "risk": "机械伤害、触电；卡涩",
+      "prevention": "1.工作前断开电机电源并确认无电压。2.减速器应与其他转动部件完全脱离。",
+      "control": "1.减速器齿轮轴、齿轮完好无锈蚀。2.减速器齿轮轴、齿轮配合间隙符合厂家规定，并加适量符合当地环境条件的润滑脂。"
+    },
+    "annotator_notes": "根据原文完整补充risk、prevention和control字段，工序名称保留原文括号内详述。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

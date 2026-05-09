@@ -1,0 +1,35 @@
+{
+  "id": "sgcc_001181",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 772,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "Q_GDW_12152-2021_施工安全风险管理规程.pdf",
+        "page_num": 106,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "二、管母线加工 （3）管母线现场堆放应保证包装完好，堆放层数不应超过三层，层间应设枕木隔离，保管区域应设隔离围挡，严禁人员踩踏管母线。 （4）在现场加工坡口时，作业人员必须穿好工作服和戴好防护镜及手套，确认电源及电动机具的完好性。 （5）坡口加工时应避免飞屑伤人，严禁手、脚接触运行中机具的转动部分，不得用手直接清理铝屑。",
+    "think_chain": "该段落来自文档Q/GDW 12152—2021第106页，是表H.3的续篇，描述管母线加工工序的风险控制措施。预提取字段中，risk为“物体打击”未在原文直接写明，但根据措施（5）中的“避免飞屑伤人”可推断出风险为物体打击；prevention字段完全匹配原文（5）的措施。其他字段如工序（管母线加工）可提取，但Excel未提供。原文无OCR错误。由于Excel只提供risk和prevention两个字段，且均有效，故output_json保留这两个字段并补充工序。",
+    "output_json": {
+      "process": "管母线加工",
+      "risk": "物体打击",
+      "prevention": "坡口加工时应避免飞屑伤人，严禁手、脚接触运行中机具的转动部分，不得用手直接清理铝屑。"
+    },
+    "annotator_notes": "Excel字段与PDF匹配良好，risk字段根据措施推断，prevention完全一致。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

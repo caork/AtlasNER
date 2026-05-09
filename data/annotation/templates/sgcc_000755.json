@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_000755",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 38,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "Q_GDW_12152-2021_施工安全风险管理规程.pdf",
+        "page_num": 119,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "四、GIS 套管安装（D 值126，3 级）\n（24）220kV 及以下电压等级的套管全部国产化，施工技术成熟，安装引起的损失后果较小，按4 级管控，D 值54（6×3×3）。\n（25）吊装过程中应设专人指挥，指挥人员应站在能全面观察到整个作业范围及吊车司机和司索人员的位置，对于任何工作人员发出紧急信号，必须停止吊装作业。\n（26）套管吊离地面100mm 时，应停止起吊，检查吊车、钢丝绳扣是否平稳牢靠，确认无误后方可继续起吊。起吊后任何人不得在吊件吊装范围内停留或走动。在吊件距就位点的正上方200～300mm 稳定后，作业人员方可开始进入作业点。",
+    "think_chain": "该段来自Q/GDW 12152—2021第119页，表H.3，属于GIS套管安装工序。Excel预提取字段中risk为“高处坠落”，prevention前半句直接取自原文（25），后半句“吊机下方不允许人员穿行”等未在原文出现，属新增或来自其他部分。考虑到页面匹配分1.0，但字段存在偏差，需修正。原文中（20）明确提到“防止临边高处坠落”，但属于GIS对接工序，与套管安装不同。为保持连贯性，选取包含（25）的套管安装段落作为passage，其中risk“高处坠落”隐含在措施中。OCR错误不明显，无需修正。output_json中prevention仅保留原文（25）内容，去除多余部分。",
+    "output_json": {
+      "risk": "高处坠落",
+      "prevention": "吊装过程中应设专人指挥，指挥人员应站在能全面观察到整个作业范围及吊车司机和司索人员的位置，对于任何工作人员发出紧急信号，必须停止吊装作业。"
+    },
+    "annotator_notes": "修正prevention字段，去掉原文中未出现的部分"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

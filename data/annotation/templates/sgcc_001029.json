@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_001029",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 443,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "作业方案范例（变电检修专业）.docx",
+        "page_num": 6,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "（三）控制回路检修风险防控措施\n在控制回路检修过程中，存在误动风险。为防止误动，拆下的控制回路及电源线头所作标记正确、清晰、牢固，防潮措施可靠。",
+    "think_chain": "该记录来源于风险库变电专业.xlsx，Sheet3行443，预提取字段为risk:误动和prevention:拆下的控制回路及电源线头所作标记正确、清晰、牢固，防潮措施可靠。PDF页面原文（第6页）是特高压芜湖站检修作业面一览表及相关人员安排，未涉及该风险内容，故需根据Excel字段构造一段合理的passage。构造的段落模拟了电力文档中常见的风险防控描述结构，包含风险名称和对应措施。字段中无OCR错误，原文本表述准确。由于PDF原文不匹配，仅输出Excel中已有的两个字段。",
+    "output_json": {
+      "risk": "误动",
+      "prevention": "拆下的控制回路及电源线头所作标记正确、清晰、牢固，防潮措施可靠。"
+    },
+    "annotator_notes": "PDF原文与Excel字段不匹配，根据Excel字段构造passage。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

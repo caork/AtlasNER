@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001733",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库配电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 22,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 494,
+        "match_score": 0.833
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "1\n柱上变压器\n变压器运输\n机械伤害、物体打击\n低\n1.起重、运输人员必须持证上岗，起重机械和运输车辆满足作业要求。\n2.运输过程应绑扎牢固，车速不大于60km/h。\n3.起重工作应设专人统一指挥，指挥信号应简明、统一、畅通，分工应明确。\n1.绑扎牢固可靠，防止运输过程滑动，倾覆。",
+    "think_chain": "该段落来自《风险库配电专业》PDF第494页，表2-2“柱上变压器检修关键工序风险库”，对应Excel中行号22的记录。PDF原文中包含了“变压器运输”和“变压器拆除”两个工序，但Excel预提取字段仅涉及“变压器运输”部分，因此passage只截取了运输工序的完整内容。可提取的字段包括设备（柱上变压器）、工序（变压器运输）、风险（机械伤害、物体打击）、风险等级（低）、防范措施（三点）和工艺管控措施（一点），共6个字段，与Excel预提取字段基本匹配。存在一处OCR错误：原文中“Ⅵ工应明确”应为“分工应明确”（“Ⅵ”是“分”的OCR误识别），已在passage中修正。其他字段无错误。字段完整，无需补充。",
+    "output_json": {
+      "equipment": "柱上变压器",
+      "process": "变压器运输",
+      "risk": "机械伤害、物体打击",
+      "risk_level": "低",
+      "prevention": "1.起重、运输人员必须持证上岗，起重机械和运输车辆满足作业要求。\n2.运输过程应绑扎牢固，车速不大于60km/h。\n3.起重工作应设专人统一指挥，指挥信号应简明、统一、畅通，分工应明确。",
+      "control": "1.绑扎牢固可靠，防止运输过程滑动，倾覆。"
+    },
+    "annotator_notes": "OCR修正：Ⅵ→分"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001547",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 49,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 636,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "4. 通用措施，操作对象：——，设备类型：——，操作行为：人员安排。存在的主要风险：安排的操作人员和监护人员精神状态不佳或人员技能不足。预控措施：合理安排操作人员，不安排当天精神状态不佳、身体有恙的值班员参与操作。复杂的操作由经验丰富值班员担任操作人，值班负责人担任监护人。",
+    "think_chain": "该段落来自PDF第636页，附录7操作流程风险库表格中的第4条记录。Excel预提取字段包括操作行为“人员安排”、风险描述、预控措施，以及设备类型“——”。原文中该行完整包含所有列：序号4、措施类型“通用措施”、操作对象“——”、设备类型“——”、操作行为“人员安排”、风险描述、预控措施。字段与Excel完全匹配，无OCR错误，无需修正。由于原文表格结构清晰，所有字段均可直接提取。",
+    "output_json": {
+      "equipment": "——",
+      "process": "人员安排",
+      "risk": "安排的操作人员和监护人员精神状态不佳或人员技能不足。",
+      "prevention": "合理安排操作人员，不安排当天精神状态不佳、身体有恙的值班员参与操作。复杂的操作由经验丰富值班员担任操作人，值班负责人担任监护人。"
+    },
+    "annotator_notes": "无OCR错误，原文与Excel一致。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

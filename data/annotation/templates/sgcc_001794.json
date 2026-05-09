@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001794",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库配电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 83,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 534,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "序\n号\n设备\n工序\n风险可能导致\n的后果\n工序风险\n库等级\n风险防范措施\n工艺管控措施\n6\n户外分支\n箱\n带电显示\n器、电缆故\n障指示器消\n缺\n机械伤害、触\n电\n中\n1.拆接二次电缆时，作业人员必须确定所拆电缆确实\n无电压，并在监护人员监护下进行作业。\n2.工作前应完成工作许可等相关手续，确保工作票类\n型正确。\n3.与带电体保持足够的安全距离，做好防止感应电的\n措施。\n1.端子连接紧固，接线图实一致。\n2.检查带电显示器与现场实际运行状态是否相符，\n各相序接线是否正确。\n3.二次线应有标识标签或号码管。",
+    "think_chain": "该段落来自《风险库配电专业.xlsx》中Sheet1的第83行，对应PDF原文第534页。Excel预提取字段中，除risk外其他基本正确。原文中risk为“机械伤害、触电”，而Excel误写为“机械伤害、烫伤、触电”，经确认原文无“烫伤”，应修正。passage直接从PDF原文提取第6条完整内容，清理了格式（去掉页码、合并断行）。所有字段均可从原文直接提取：equipment（户外分支箱）、process（带电显示器、电缆故障指示器消缺）、risk（机械伤害、触电）、risk_level（中）、prevention（三条措施）、control（三条措施）。无OCR错误需要额外修正，仅需修正risk字段。",
+    "output_json": {
+      "equipment": "户外分支箱",
+      "process": "带电显示器、电缆故障指示器消缺",
+      "risk": "机械伤害、触电",
+      "risk_level": "中",
+      "prevention": "1.拆接二次电缆时，作业人员必须确定所拆电缆确实无电压，并在监护人员监护下进行作业。2.工作前应完成工作许可等相关手续，确保工作票类型正确。3.与带电体保持足够的安全距离，做好防止感应电的措施。",
+      "control": "1.端子连接紧固，接线图实一致。2.检查带电显示器与现场实际运行状态是否相符，各相序接线是否正确。3.二次线应有标识标签或号码管。"
+    },
+    "annotator_notes": "风险字段原文为'机械伤害、触电'，Excel中多写了'烫伤'，已修正。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

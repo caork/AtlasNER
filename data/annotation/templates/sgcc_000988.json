@@ -1,0 +1,34 @@
+{
+  "id": "sgcc_000988",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电专业.xlsx",
+    "sheet": "Sheet3",
+    "row": 385,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "Q_GDW_12152-2021_施工安全风险管理规程.pdf",
+        "page_num": 119,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "（12）GIS 就位拆箱时，作业人员应相互照应，特别是在拆较高大包装箱时，应用人扶住，防止包装板突然倒塌伤人。",
+    "think_chain": "该段落来自《Q/GDW 12152—2021》标准第119页的表H.3续。PDF原文中明确列出了工序“GIS 就位拆箱”及其预控措施，但未像其他工序（如GIS对接）一样附带风险评定值D和风险级别。风险“机械伤害”是根据预控措施内容（防止包装板倒塌伤人）合理推断的。Excel预提取字段中prevention除了PDF原文的句子外，还多了一句“开箱作业人员相距不可太近……”，该句在PDF第119页中并未出现，可能是从其他行或版本合并而来，因此需予以删除以保持与原文一致。此外，原文中第12条与第16条内容重复，第12条为首次出现，故采用第12条。未发现明显OCR错误，如“应用人扶住”表达虽稍显别扭但无实质错误。",
+    "output_json": {
+      "risk": "机械伤害",
+      "prevention": "GIS 就位拆箱时，作业人员应相互照应，特别是在拆较高大包装箱时，应用人扶住，防止包装板突然倒塌伤人。"
+    },
+    "annotator_notes": "根据PDF原文第119页修正prevention，删除Excel中多余的句子。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "sgcc_001506",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库变电倒闸.xls",
+    "sheet": "典型违章库",
+    "row": 8,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 629,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "GIS(HGIS)\n分闸\n1.带负荷拉开隔离开关；\n2.闸刀连杆脱落，导致位置检查不到位。\n1.隔离开关操作前检查开关三相确已分闸到位，三相电流为0。\n2.应检查隔离开关三相传动连杆到位，所有机械分合闸指示位置、后台状态变化正确。",
+    "think_chain": "该段落来自《风险库变电倒闸.xls》中Sheet“典型违章库”的第8行，对应PDF原文第629页。原文包含AIS和GIS(HGIS)两部分，Excel预提取字段仅涉及GIS(HGIS)分闸工序，因此passage截取该部分。原文清晰，无OCR错误，字段完整。Risk和Prevention直接取自原文，与Excel内容一致，仅修复了Prevention中“后台状态”的换行问题。Equipment为GIS(HGIS)，Process为分闸，均与Excel一致。",
+    "output_json": {
+      "equipment": "GIS(HGIS)",
+      "process": "分闸",
+      "risk": "1.带负荷拉开隔离开关；2.闸刀连杆脱落，导致位置检查不到位。",
+      "prevention": "1.隔离开关操作前检查开关三相确已分闸到位，三相电流为0。2.应检查隔离开关三相传动连杆到位，所有机械分合闸指示位置、后台状态变化正确。"
+    },
+    "annotator_notes": "无OCR错误，字段完整"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

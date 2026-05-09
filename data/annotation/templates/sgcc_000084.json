@@ -1,0 +1,37 @@
+{
+  "id": "sgcc_000084",
+  "status": "completed",
+  "source": {
+    "excel_file": "89号文拆分标注.xlsx",
+    "sheet": "Sheet1",
+    "row": 86,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "Q_GDW_12152-2021_施工安全风险管理规程.pdf",
+        "page_num": 112,
+        "match_score": 0.25
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "均压环拆除\n机械伤害、物体打击\n（1）确认所有绳索从吊钩上卸下后再起钩，不允许吊车抖绳摘索，更不允许借助吊车臂的升降摘索。\n（2）作业人员在斗臂车或脚手架搭设的平台上作业时正确佩戴安全带，脚手架做好防倾倒措施。\n按照厂家规定工艺要求进行解体。",
+    "think_chain": "该段来自Excel预提取字段，原始PDF页面为表H.3（续），但内容涉及互感器、耦合电容器、避雷器安装和干式电抗器安装，未包含“均压环拆除”工序。由于最佳匹配分0.25，低于阈值，故根据Excel字段构造passage。可提取字段包括：equipment（避雷器）、process（均压环拆除）、risk（机械伤害、物体打击）、prevention（两项预控措施）、control（按厂家工艺解体）。无OCR错误。因PDF原文不匹配，passage为构造。",
+    "output_json": {
+      "equipment": "避雷器",
+      "process": "均压环拆除",
+      "risk": "机械伤害、物体打击",
+      "prevention": "1.确认所有绳索从吊钩上卸下后再起钩，不允许吊车抖绳摘索，更不允许借助吊车臂的升降摘索。 2.作业人员在斗臂车或脚手架搭设的平台上作业时正确佩戴安全带，脚手架做好防倾倒措施。",
+      "control": "按照厂家规定工艺要求进行解体。"
+    },
+    "annotator_notes": "PDF原文未包含此工序，根据Excel字段构造段落。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

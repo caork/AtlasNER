@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_000209",
+  "status": "completed",
+  "source": {
+    "excel_file": "89号文拆分标注.xlsx",
+    "sheet": "Sheet1",
+    "row": 211,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 162,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "61 隔离开关 带电清扫 高压触电；外绝缘闪络 中 1.明确带电部位，与带电体保持足够的安全距离。2.安全工器具定期校验，符合绝缘要求。3.带电清洗液符合绝缘要求。进行带电水冲洗瓷套工作时应满足带电水冲洗的工序要求。",
+    "think_chain": "本段来自《89号文拆分标注》PDF第162页。表格中第61行对应设备“隔离开关”、工序“带电清扫”，风险后果包含“高压触电”和“外绝缘闪络”，风险等级为“中”，防范措施3条，工艺管控措施1条。Excel预提取的risk只取“高压触电”，但原文完整，故保留两者。prevention和control与原文一致，无OCR错误。注意原文“操动机构”等词正确。字段可提取：equipment、process、risk、risk_level、prevention、control。因Excel只要求5个字段，但risk_level实际存在，故在output_json中补充。",
+    "output_json": {
+      "equipment": "隔离开关",
+      "process": "带电清扫",
+      "risk": "高压触电；外绝缘闪络",
+      "risk_level": "中",
+      "prevention": "1.明确带电部位，与带电体保持足够的安全距离。2.安全工器具定期校验，符合绝缘要求。3.带电清洗液符合绝缘要求。",
+      "control": "进行带电水冲洗瓷套工作时应满足带电水冲洗的工序要求。"
+    },
+    "annotator_notes": "原文risk包含两个后果，预提取遗漏了“外绝缘闪络”，已补全。其他字段与原文一致，无OCR错误需修正。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

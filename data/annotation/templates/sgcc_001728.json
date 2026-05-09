@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001728",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库配电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 17,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 491,
+        "match_score": 0.889
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "带电更换跌落式熔断器（手套法）\n机械伤害、物体打击、触电、高处坠落\n中\n1.操作熔断器前应先检查负荷侧开关已全部拉开。\n2.对邻相或对地采取可靠的绝缘隔离，遮蔽用具之间的接合处必须大于15 cm的重合部分，如遮蔽罩有脱落的可能时，必须采用绝缘夹或绝缘绳绑扎，以防脱落。\n3.拆下的引线应采用绝缘绳绑扎固定或用锁杆固定，防止引线摆动。",
+    "think_chain": "该段落来自风险库配电专业.xlsx的Sheet1第17行，对应PDF第491页。PDF中包含三个工序，本记录对应第三个工序“带电更换跌落式熔断器（手套法）”。可提取字段有：equipment（跌落式熔断器）、process（带电更换跌落式熔断器（手套法））、risk（机械伤害、物体打击、触电、高处坠落）、risk_level（中）、prevention（三条风险防范措施）。control字段在Excel中预提取了安装工序的工艺管控措施，但PDF中该工序未提供工艺管控措施，故应置为空或null。OCR错误：原文“重合部Ⅵ”应为“重合部分”，已修正。其他字段无误。",
+    "output_json": {
+      "equipment": "跌落式熔断器",
+      "process": "带电更换跌落式熔断器（手套法）",
+      "risk": "机械伤害、物体打击、触电、高处坠落",
+      "risk_level": "中",
+      "prevention": "1.操作熔断器前应先检查负荷侧开关已全部拉开。\n2.对邻相或对地采取可靠的绝缘隔离，遮蔽用具之间的接合处必须大于15 cm的重合部分，如遮蔽罩有脱落的可能时，必须采用绝缘夹或绝缘绳绑扎，以防脱落。\n3.拆下的引线应采用绝缘绳绑扎固定或用锁杆固定，防止引线摆动。",
+      "control": ""
+    },
+    "annotator_notes": "PDF原文中该工序无工艺管控措施，Excel预提取的control字段实为上一工序的内容，故置空。"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}

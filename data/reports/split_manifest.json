@@ -1,20 +1,23 @@
 {
-  "total_samples": 5,
+  "total_samples": 1577,
   "splits": {
-    "train": 0,
-    "dev": 2,
-    "test": 3
+    "train": 1261,
+    "dev": 158,
+    "test": 158
   },
   "field_presence": {
-    "equipment": 3,
-    "process": 3,
-    "risk": 5,
-    "risk_level": 3,
-    "prevention": 5,
-    "control": 3
+    "equipment": 1063,
+    "process": 1081,
+    "risk": 1569,
+    "risk_level": 969,
+    "prevention": 1573,
+    "control": 960
   },
   "field_count_distribution": {
-    "2": 2,
-    "6": 3
+    "2": 443,
+    "3": 61,
+    "4": 69,
+    "5": 154,
+    "6": 850
   }
 }

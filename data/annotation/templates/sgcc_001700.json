@@ -1,0 +1,38 @@
+{
+  "id": "sgcc_001700",
+  "status": "completed",
+  "source": {
+    "excel_file": "风险库输电专业.xlsx",
+    "sheet": "Sheet1",
+    "row": 21,
+    "tier": "tier1_mapped"
+  },
+  "reference": {
+    "page_refs": [
+      {
+        "doc_name": "1-1-2-7.国家电网有限公司关于进一步加强生产现场作业风险管控工作的通知（国家电网设备〔2022〕89号）.pdf",
+        "page_num": 444,
+        "match_score": 1.0
+      }
+    ],
+    "image_paths": []
+  },
+  "annotation": {
+    "passage": "3\n架空输电线路\n操作工器具\n有效绝缘距离不足、绝缘强度不足\n高\n1.定期对绝缘工器具进行试验，科学规范保养。\n2.合理选用并正确使用绝缘工器具，保证有效绝缘距离。\n执行《送电线路带电作业技术导则》（DL/T 966-2005）、《±500kV 直流输电线路带电作业技术导则》（DLT 881-2004）等规程规范要求",
+    "think_chain": "该段落来自《风险库输电专业.xlsx》中的Sheet1第21行，对应PDF原文第444页。PDF原文包含三条记录，其中第三条（序号3）与Excel预提取字段完全匹配。字段包括设备（架空输电线路）、工作内容（操作工器具）、风险类型（有效绝缘距离不足、绝缘强度不足）、风险等级（高）、风险防范措施（两条）、质量管控措施（引用两项规程）。经核对，原文无OCR错误或断行问题，仅需将换行合并为完整语句。Excel中部分字段格式略有差异（如DL/T 966-2005中缺少空格），但语义一致。所有6个字段均可提取，无需补充。",
+    "output_json": {
+      "equipment": "架空输电线路",
+      "process": "操作工器具",
+      "risk": "有效绝缘距离不足、绝缘强度不足",
+      "risk_level": "高",
+      "prevention": "1.定期对绝缘工器具进行试验，科学规范保养。\n2.合理选用并正确使用绝缘工器具，保证有效绝缘距离。",
+      "control": "执行《送电线路带电作业技术导则》（DL/T 966-2005）、《±500kV 直流输电线路带电作业技术导则》（DLT 881-2004）等规程规范要求"
+    },
+    "annotator_notes": "完全匹配，无OCR错误，直接提取"
+  },
+  "sft_format": {
+    "system": "你是电力领域结构化信息抽取专家。给定电力文档段落，提取风险管控记录。仅输出文档中确实存在的字段，不臆造信息。输出严格JSON格式。\n\n可提取的字段：\n- equipment: 设备名称\n- process: 工序/作业内容\n- risk: 风险描述（风险类型或可能导致的后果）\n- risk_level: 风险等级\n- prevention: 防范措施\n- control: 管控措施",
+    "user_template": "请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
+    "assistant_template": "<think>\n{think_chain}\n</think>\n\n```json\n{output_json}\n```"
+  }
+}
