@@ -142,22 +142,15 @@ def build_multi_record_sample(
         proc = record.get("process", "未知工序")
         combined_think += f"【记录{i}】{equip} - {proc}\n{think}\n\n"
 
-    output_json = json.dumps(records, ensure_ascii=False, indent=2)
-    assistant_content = f"<think>\n{combined_think.strip()}\n</think>\n\n```json\n{output_json}\n```"
-
     source_files = list({t["source"]["excel_file"] for t in group})
     source_ids = [t["id"] for t in group]
 
     return {
         "id": f"sgcc_multi_{sample_idx:04d}",
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {
-                "role": "user",
-                "content": f"请从以下文档段落中提取所有结构化风险管控记录：\n\n<document>\n{combined_passage}\n</document>",
-            },
-            {"role": "assistant", "content": assistant_content},
-        ],
+        "system": SYSTEM_PROMPT,
+        "input": combined_passage,
+        "think": combined_think.strip(),
+        "output": records,
         "metadata": {
             "quality": "gold",
             "type": "multi_record",
@@ -165,7 +158,7 @@ def build_multi_record_sample(
             "source_ids": source_ids,
             "source_files": source_files,
             "input_char_count": len(combined_passage),
-            "output_char_count": len(output_json),
+            "output_char_count": len(json.dumps(records, ensure_ascii=False)),
             "split": "test",
         },
     }

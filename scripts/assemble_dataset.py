@@ -92,7 +92,11 @@ def validate_template(template: dict) -> list[ValidationError]:
 
 
 def build_sft_sample(template: dict) -> dict:
-    """Convert a validated annotation template to SFT format."""
+    """Convert a validated annotation template to flat KV SFT format.
+
+    Stores system, input, think, output as separate keys so downstream
+    training scripts can compose them into any model input format.
+    """
     ann = template["annotation"]
     source = template["source"]
 
@@ -105,19 +109,12 @@ def build_sft_sample(template: dict) -> dict:
         if k in output_json:
             ordered_output[k] = output_json[k]
 
-    output_str = json.dumps(ordered_output, ensure_ascii=False, indent=2)
-    assistant_content = f"<think>\n{think_chain}\n</think>\n\n```json\n{output_str}\n```"
-
     return {
         "id": template["id"],
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {
-                "role": "user",
-                "content": f"请从以下文档段落中提取结构化风险管控记录：\n\n<document>\n{passage}\n</document>",
-            },
-            {"role": "assistant", "content": assistant_content},
-        ],
+        "system": SYSTEM_PROMPT,
+        "input": passage,
+        "think": think_chain,
+        "output": ordered_output,
         "metadata": {
             "quality": "gold",
             "source_file": source.get("excel_file", "unknown"),
@@ -126,7 +123,7 @@ def build_sft_sample(template: dict) -> dict:
             "tier": source.get("tier", "unknown"),
             "field_count": len(ordered_output),
             "input_char_count": len(passage),
-            "output_char_count": len(output_str),
+            "output_char_count": len(json.dumps(ordered_output, ensure_ascii=False)),
         },
     }
 
@@ -237,10 +234,7 @@ def main() -> None:
     field_presence: Counter = Counter()
     for s in samples:
         field_counts[s["metadata"]["field_count"]] += 1
-        output = json.loads(
-            s["messages"][2]["content"].split("```json\n")[1].split("\n```")[0]
-        )
-        for k in output:
+        for k in s["output"]:
             field_presence[k] += 1
 
     print(f"\n=== Field count distribution ===")
