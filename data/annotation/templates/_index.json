@@ -1,0 +1,45 @@
+{
+  "total": 5,
+  "templates": [
+    {
+      "id": "sgcc_000144",
+      "status": "pending",
+      "equipment": "消弧线圈",
+      "process": "例行试验",
+      "field_count": 5,
+      "page_refs": 4
+    },
+    {
+      "id": "sgcc_000274",
+      "status": "pending",
+      "equipment": "站用变",
+      "process": "交接试验",
+      "field_count": 6,
+      "page_refs": 4
+    },
+    {
+      "id": "sgcc_000449",
+      "status": "pending",
+      "equipment": "直流馈电柜（分电柜）",
+      "process": "指示灯更换",
+      "field_count": 6,
+      "page_refs": 3
+    },
+    {
+      "id": "sgcc_000974",
+      "status": "pending",
+      "equipment": "",
+      "process": "",
+      "field_count": 2,
+      "page_refs": 4
+    },
+    {
+      "id": "sgcc_001279",
+      "status": "pending",
+      "equipment": "",
+      "process": "",
+      "field_count": 2,
+      "page_refs": 1
+    }
+  ]
+}

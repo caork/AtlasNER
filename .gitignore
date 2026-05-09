@@ -30,6 +30,9 @@ build/
 venv/
 env/
 
+# Annotation rendered page images (large PNGs)
+data/annotation/pages/
+
 # OS
 .DS_Store
 Thumbs.db
